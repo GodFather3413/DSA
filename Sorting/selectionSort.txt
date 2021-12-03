@@ -7,6 +7,8 @@ public class Test{
         System.out.println("Selection Sort : " + Arrays.toString(selectionSort(arr)));
     }
 
+    //Goal is to Sort in Ascending Order
+
     static int[] selectionSort(int[] arr){
         for(int i = 0; i < arr.length; i++){
             int last = arr.length - i - 1;

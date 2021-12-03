@@ -6,7 +6,7 @@ public class Test{
         int[] arr = new int[] {7, 6, 5, 4, 3, 2, 1};
         System.out.print("Insertion Sort : " + Arrays.toString(insertionSort(arr)));
     }
-
+    
     //Goal is to Sort in Ascending Order
 
     static int[] insertionSort(int[] arr){
