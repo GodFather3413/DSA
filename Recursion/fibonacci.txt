@@ -1,0 +1,19 @@
+package com.kanchanJS;
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner s = new Scanner(System.in);
+        int num = s.nextInt();
+        for(int i = 1; i <= num; i++){
+            System.out.println(i + " Fibonacci number is = " + fibonacci(i));
+        }
+    }
+
+    static int fibonacci(int num){
+        if(num < 2){
+            return num;
+        }
+        return fibonacci(num - 2) + fibonacci(num - 1);
+    }
+}
