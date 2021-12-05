@@ -1,0 +1,24 @@
+package com.kanchanJS;
+import java.util.Scanner;
+
+public class Test{
+    public static void main(String[] args){
+        Scanner s = new Scanner(System.in);
+        int[] arr = {97, 7, 17, 71, 77, 73};
+        int target = s.nextInt();
+        System.out.print("Index of : " + target + " is = " + linearSearch(arr, target));
+    }
+
+    static int linearSearch(int[] arr, int target) {
+        if (arr.length < 1) {
+            return -1;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
