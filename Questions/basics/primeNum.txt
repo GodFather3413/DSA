@@ -1,0 +1,28 @@
+package com.kanchanJS;
+
+public class Test{
+    public static void main(String[] args){
+        for(int i = 0; i < 121; i++){
+            if(getPrime(i)){
+                System.out.print(i + " ");
+            }
+        }
+    }
+
+    static boolean getPrime(int num){
+        if(num < 2){
+            return false;
+        }
+
+        int c = 2;
+
+        while(c * c <= num){
+            if(num % c == 0){
+                return false;
+            }
+            c++;
+        }
+        return true;
+    }
+
+}
