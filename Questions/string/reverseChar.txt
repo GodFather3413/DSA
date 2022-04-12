@@ -1,0 +1,25 @@
+package com.kanchanJS;
+import java.util.Scanner;
+
+// remove the non-alphabetical characters and reverse the output
+
+public class Test{
+    public static void main(String[] args){
+        Scanner s =  new Scanner(System.in);
+        String str = s.nextLine();
+        String n = filter(str);
+        System.out.println(reverse(n));
+    }
+
+    static String filter(String str){
+        return str.replaceAll("[^A-Za-z]+", "");
+    }
+
+    static String reverse(String str){
+        StringBuilder sb = new StringBuilder();
+        for(int i  = str.length() - 1; i >= 0; i--){
+            sb.append(str.charAt(i));
+        }
+        return sb.toString();
+    }
+}
