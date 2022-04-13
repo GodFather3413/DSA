@@ -8,7 +8,10 @@ public class Test{
         Scanner s =  new Scanner(System.in);
         String str = s.nextLine();
         String n = filter(str);
-        System.out.println(reverse(n));
+        System.out.println("Original : " + str);
+        System.out.println("revChar : " + reverse(n));
+        System.out.println("revChar : " + reverseNew(n));
+        System.out.println("Result : " + reverse(n).equals(reverseNew(n)));
     }
 
     static String filter(String str){
@@ -19,6 +22,14 @@ public class Test{
         StringBuilder sb = new StringBuilder();
         for(int i  = str.length() - 1; i >= 0; i--){
             sb.append(str.charAt(i));
+        }
+        return sb.toString();
+    }
+
+    static String reverseNew(String str){
+        StringBuilder sb = new StringBuilder();
+        for(int i  = 0; i < str.length(); i++){
+            sb.append(str.charAt(str.length() - i - 1));
         }
         return sb.toString();
     }
