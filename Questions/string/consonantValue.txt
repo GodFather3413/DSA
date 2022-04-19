@@ -1,0 +1,43 @@
+package com.kanchanJS;
+
+// process a string split them w.r.t the vowels i.e. a, e, i, o, u
+// and then get the max consonants from each partition and
+// print out the result
+// eg:- IntelliJ -> ['', 'nt', 'll', 'j'] -> [0 + (20 + 14 ) + (12  + 12) + 10]
+//  0, 34, 24, 10
+// hence 'nt' partition is the greatest -> 34
+// P.S -> a-z : 1-26 [As in a = 1, b = 2,... , z = 26]
+
+public class Test{
+    public static void main(String[] args){
+        String str = "IntelliJ";
+        System.out.println(ConsonantValue(str.toLowerCase()));
+    }
+
+    static int ConsonantValue(String str){
+        String[] sol = str.split("[aeiou]");
+        return compute(sol);
+    }
+
+    static int compute(String[] str){
+        int[] sol = new int[str.length];
+        for(int i = 0; i < str.length; i++){
+            int sum = 0;
+            for(int j = 0; j < str[i].length(); j++){
+                sum += str[i].charAt(j) - 96;
+                sol[i] = sum;
+            }
+        }
+        return getMax(sol);
+    }
+
+    static int getMax(int[] sol){
+        int max = Integer.MIN_VALUE;
+        for(int x : sol){
+            if(x > max){
+                max = x;
+            }
+        }
+        return max;
+    }
+}
