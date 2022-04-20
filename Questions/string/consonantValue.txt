@@ -25,8 +25,8 @@ public class Test{
             int sum = 0;
             for(int j = 0; j < str[i].length(); j++){
                 sum += str[i].charAt(j) - 96;
-                sol[i] = sum;
             }
+	    sol[i] = sum;
         }
         return getMax(sol);
     }
