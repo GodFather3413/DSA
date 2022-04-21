@@ -1,0 +1,24 @@
+package com.kanchanJS;
+
+//  Input: arr = [9,6,4,2,3,5,7,0,1]
+//  Output: 8
+//  Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9].
+//  8 is the missing number in the range since it does not appear in arr.
+
+public class Test{
+    public static void main(String[] args){
+        int[] arr = new int[] {2, 7, 8, 3, 0, 4, 6, 5};
+        System.out.println(missingNumber(arr));
+    }
+
+    public static int missingNumber(int[] arr){
+        int n = arr.length;
+        int temp = (n*(n+1))/2;
+        int sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        return temp - sum;
+    }
+
+}
