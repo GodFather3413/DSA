@@ -34,12 +34,7 @@ public class Test{
                 e--;
             }
         }
-        if(low > e){
-            quickSort(arr, low, e);
-        }
-
-        if(s > high){
-            quickSort(arr, s, high);
-        }
+        quickSort(arr, low, e);
+        quickSort(arr, s, high);
     }
 }
