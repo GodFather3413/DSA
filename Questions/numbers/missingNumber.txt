@@ -1,24 +1,57 @@
 package com.kanchanJS;
 
-//  Input: arr = [9,6,4,2,3,5,7,0,1]
-//  Output: 8
-//  Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9].
-//  8 is the missing number in the range since it does not appear in arr.
-
 public class Test{
     public static void main(String[] args){
-        int[] arr = new int[] {2, 7, 8, 3, 0, 4, 6, 5};
-        System.out.println(missingNumber(arr));
+        int[] arr = new int[] {1, 2, 4, 5, 0};
+        int[] arr2 = new int[] {1, 2, 4, 5};
+        int[] arr3 = new int[] {75, 71, 74, 72};
+        System.out.println("Missing number is [0, n]: " + missingNumber(arr));
+        System.out.println("Missing number is [1, n]: " + missingNumber2(arr2));
+        System.out.print("Missing number is [71, n]: " + missingNumber3(arr3));
     }
 
-    public static int missingNumber(int[] arr){
+    static int missingNumber(int[] arr){
         int n = arr.length;
-        int temp = (n*(n+1))/2;
         int sum = 0;
-        for (int num : arr) {
-            sum += num;
+        int temp = (n * (n + 1))/2;
+        for(int x : arr){
+            sum += x;
         }
-        return temp - sum;
+        return (temp - sum);
     }
 
+    static int missingNumber2(int[] arr){
+        int n = arr.length + 1;
+        int sum = 0;
+        int temp = (n * (n + 1))/2;
+        for(int x : arr){
+            sum += x;
+        }
+        return (temp - sum);
+    }
+
+    static int missingNumber3(int[] arr){
+        sort(arr);
+        int num = 0;
+        int pr = arr[0];
+        for(int i = 0; i < arr.length - 1; i++){
+            if(i != arr[i] - pr){
+                num += pr + i;
+                break;
+            }
+        }
+        return num;
+    }
+
+    static void sort(int[] arr){
+        for(int i = 0; i < arr.length; i++){
+            for(int j = 1; j < arr.length - i; j++){
+                if(arr[j-1] > arr[j]){
+                    int temp = arr[j];
+                    arr[j] = arr[j-1];
+                    arr[j-1] = temp;
+                }
+            }
+        }
+    }
 }
