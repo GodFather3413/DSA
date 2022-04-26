@@ -1,0 +1,61 @@
+package com.kanchanJS;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test{
+    public static void main(String[] args){
+        int[] arr = new int[] {4, 3, 2, 7, 8, 2, 3, 1};
+        System.out.println(getDup(arr));
+        System.out.print(getMissing(arr));
+    }
+
+    // give us the duplicate number in the array
+
+    static List<Integer> getDup(int[] arr){
+        int i = 0;
+        while(i < arr.length){
+            int correct = arr[i] - 1;
+            if(arr[correct] != arr[i]){
+                int temp = arr[correct];
+                arr[correct] = arr[i];
+                arr[i] = temp;
+            } else {
+                i++;
+            }
+        }
+
+        List<Integer> list = new ArrayList<>();
+        for(int j = 0; j < arr.length;  j++){
+            if(arr[j] != j + 1){
+                list.add(arr[j]);
+            }
+        }
+        return list;
+    }
+
+    // give us the missing number in the array
+
+    static List<Integer> getMissing(int[] arr){
+        int i = 0;
+        while(i < arr.length){
+            int correct = arr[i] - 1;
+            if(arr[correct] != arr[i]){
+                int temp = arr[correct];
+                arr[correct] = arr[i];
+                arr[i] = temp;
+            } else {
+                i++;
+            }
+        }
+
+        List<Integer> list = new ArrayList<>();
+        for(int j = 0; j < arr.length;  j++){
+            if(arr[j] != j + 1){
+                list.add(j + 1);
+            }
+        }
+        return list;
+    }
+
+}
