@@ -1,0 +1,49 @@
+package com.kanchanJS;
+
+import java.util.Arrays;
+
+// to find the lowest number of digits to add up-to a target or greater than taarget
+// eg : target = 15 -> 10, 9 => 2 digits => 2
+
+public class Test{
+    public static void main(String[] args){
+        String str = "1 2 3 4 5 6 7 8 9 10";
+        int target = 15;
+        String[] arr = str.split(" ");
+
+        int[] num = new int[arr.length];
+        for(int i = 0; i < arr.length; i++){
+            num[i] = Integer.parseInt(arr[i]);
+        }
+
+        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(num));
+
+        System.out.println(getMinSubStrDigit(num, target));
+    }
+
+    static int getMinSubStrDigit(int[] num, int target){
+        if(num.length < 2){
+            return 0;
+        }
+        for(int i = 0; i < num.length; i++){
+            for(int j = 1; j < num.length - i; j++){
+                if(num[j-1] < num[j]){
+                    int temp = num[j-1];
+                    num[j-1] = num[j];
+                    num[j] = temp;
+                }
+            }
+        }
+
+        int count = 0;
+        int sum = 0;
+        while(sum < target){
+            sum += num[count];
+            count++;
+        }
+
+        return count;
+    }
+
+}
