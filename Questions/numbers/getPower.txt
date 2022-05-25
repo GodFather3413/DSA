@@ -1,0 +1,31 @@
+package com.kanchanJS;
+import java.util.Scanner;
+
+//  digPow(89, 1) should return 1 since 8¹ + 9² = 89 = 89 * 1
+//  digPow(92, 1) should return -1 since there is no k such as 9¹ + 2² equals 92 * k
+//  digPow(695, 2) should return 2 since 6² + 9³ + 54= 1390 = 695 * 2
+//  digPow(46288, 3) should return 51 since 4³ + 64+ 25 + 86 + 87 = 2360688 = 46288 * 51
+
+
+public class Test{
+    public static void main(String[] args){
+        Scanner s = new Scanner(System.in);
+        int num = s.nextInt();
+        int pow = s.nextInt();
+        System.out.println(getPower(num, pow));
+    }
+
+    public static int getPower(int num, int pow){
+        int digit = (int)(Math.log10(num) + 1);
+        int n = num;
+        int sum = 0;
+        while(digit > 0){
+            int temp = num % 10;
+            int sol = (int)Math.pow(temp, pow + digit - 1);
+            sum+=sol;
+            digit--;
+            num/=10;
+        }
+        return (sum % n == 0 ? sum/n : -1);
+    }
+}
