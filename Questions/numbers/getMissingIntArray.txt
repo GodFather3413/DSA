@@ -1,0 +1,45 @@
+package com.kanchanJS;
+
+import java.util.Arrays;
+
+public class Test{
+    public static void main(String[] args){
+        int[] arr = new int[] {4, 3, 2, 7, 8, 2, 3, 1};
+        int[] arr1 = new int[] {4, 4, 7, 8, 8, 9};
+        int[] arr2 = new int[] {2, 6, 8, 90, 58, 58, 60};
+        System.out.println(getMissingInt(arr));
+        System.out.println(Arrays.toString(getMissingIntArray(arr)));
+        System.out.println(Arrays.toString(getMissingIntArray(arr1)));
+        System.out.println(Arrays.toString(getMissingIntArray(arr2)));
+    }
+
+
+    static int getMissingInt(int[] arr) {
+        Arrays.sort(arr);
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] == arr[i - 1])
+                return arr[i];
+        }
+        return -1;
+    }
+
+    static int[] getMissingIntArray(int[] arr) {
+        Arrays.sort(arr);
+        int count = 0;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] == arr[i - 1])
+                count++;
+        }
+
+        int k = 0;
+        int[] sol = new int[count];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] == arr[i - 1]){
+                sol[k] = arr[i];
+                k++;
+            }
+        }
+
+        return sol;
+    }
+}
