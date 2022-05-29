@@ -1,0 +1,37 @@
+package com.kanchanJS;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Test{
+    public static void main(String[] args) {
+
+        String str = "loveleetcode";
+        System.out.println(firstUniqChar(str));
+
+    }
+
+    static int firstUniqChar(String str){
+        Map<Character, Integer> map = new HashMap<>();
+        char[] arr = str.toCharArray();
+
+        for(char c : arr){
+            if(map.containsKey(c)){
+                map.put(c, map.get(c) + 1);
+            } else {
+                map.put(c, 1);
+            }
+        }
+
+        int sol = -1;
+
+        for(int i = 0; i < arr.length; i++){
+            if(map.get(arr[i]) == 1){
+                sol = i;
+                break;
+            }
+        }
+
+        return sol;
+    }
+}
