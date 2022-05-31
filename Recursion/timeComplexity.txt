@@ -1,0 +1,94 @@
+package Recursion;
+
+import java.util.Arrays;
+
+public class Test {
+    public static void main(String[] args){
+        int[] arr = new int[] {1, 2, 3, 4};
+        int[] arr1 = new int[] {1, 3, 5, 7};
+        spOfArray(arr);
+        System.out.println("\n-----------------------------\n");
+        printPairs(arr);
+        System.out.println("\n-----------------------------\n");
+        printUnorderedPairs(arr);
+        System.out.println("\n-----------------------------\n");
+        printUnorderedPairs(arr, arr1);
+        System.out.println("\n-----------------------------\n");
+        System.out.println(Arrays.toString(reverse(arr)));
+        System.out.println("\n-----------------------------\n");
+        System.out.println(powerOfTwo(50));
+    }
+
+    // Time Complexity -------------------> O(N)
+    static void spOfArray(int[] arr){
+        int sum = 0; // -------------------> O(1)
+        int product = 1; // -------------------> O(1)
+        for(int x : arr){ //-------------------> O(N)
+            sum += x; //-------------------> O(1)
+        }
+
+        for (int x : arr) { //-------------------> O(N)
+            product *= x; //-------------------> O(1)
+        }
+        System.out.println("Sum : " + sum + "\nProduct : " + product); //-------------------> O(1)
+    }
+
+    // Time Complexity -------------------> O(N^2)
+    static void printPairs(int[] arr){
+        for (int k : arr) { // -------------------> O(N)
+            for (int i : arr) { // -------------------> O(N)
+                System.out.print(k + "" +  i + "  "); // -------------------> O(1)
+            }
+            System.out.println(); // -------------------> O(1)
+        }
+    }
+
+    // Time Complexity -------------------> O(N^2)
+    static void printUnorderedPairs(int[] arr){
+        for(int i = 0; i < arr.length; i++){
+            for(int j = i + 1; j < arr.length; j++){
+                System.out.print(arr[i] + "" +  arr[j] + "  ");
+            }
+            System.out.println();
+        }
+    }
+
+
+    // Time Complexity -------------------> O(ab) i.e. length of array A * length of array B
+    static void printUnorderedPairs(int[] arr1, int[] arr2) {
+        for (int j : arr1) { // -------------------> O(a)
+            for (int k : arr2) { // -------------------> O(b)
+                if (j < k) {
+                    System.out.print(j + "" + k + "  ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    // Time Complexity -------------------> O(N)
+    static int[] reverse(int[] arr){
+        for(int i = 0; i < arr.length / 2; i++){ // -------------------> O(N/2)
+            int end = arr.length - i - 1; // -------------------> O(1)
+            int temp = arr[i]; // -------------------> O(1)
+            arr[i] = arr[end]; // -------------------> O(1)
+            arr[end] = temp; // -------------------> O(1)
+        }
+        return arr; // -------------------> O(1)
+    }
+
+
+    // Time Complexity -------------------> O(logN)
+    static int powerOfTwo(int n){
+        if(n < 1){
+            return 0;
+        } else if (n == 1){
+            System.out.println(1);
+            return 1;
+        } else {
+            int prev = powerOfTwo(n / 2);
+            System.out.println(prev * 2);
+            return prev * 2;
+        }
+    }
+}
