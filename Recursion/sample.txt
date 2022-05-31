@@ -1,0 +1,162 @@
+package Recursion;
+
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int n = 6;
+        int[] arr = new int[] {3, 5, 7, 2, 4};
+        System.out.println("Factorial of " + n + " is : " + factorial(n));
+        System.out.println("Fibonacci of " + n + " is : " + fibonacci(n));
+        System.out.println("Sum of digits of " + 112 + " is : " + digitSum(112));
+        System.out.println("power is : " + power(n, n));
+        System.out.println("Greatest common divisor : " + gcd(8, 4));
+        System.out.println("Binary Value of " + 13 + " in Decimal is : " +  decimalToBinary(13));
+        System.out.println("Product of array till a given index N" + productofArray(arr, 5));
+        System.out.println(recursiveRange(n));
+        System.out.println(reverse("kanchan"));
+        System.out.println(isPalindrome("xoyox"));
+        OddFunction odd = new OddFunction();
+        System.out.println("Odd Function : " + someRecursive(new int[] {4, 6, 8}, odd));
+        System.out.println("First capitalise occurrence : " + first("kanCHan"));
+        System.out.println("First Capitalise letter : " + capitalizeWord("kanchan"));
+    }
+
+    // factorial of a number
+    public static int factorial(int n) {
+        if (n < 2) {
+            return n;
+        }
+        return n * factorial(n - 1);
+    }
+
+    // Fibonacci sequence
+    public static int fibonacci(int n) {
+        if (n < 2) {
+            return n;
+        }
+        return fibonacci(n - 2) + fibonacci(n - 1);
+    }
+
+    // sum of digits of the numbers
+    static int digitSum(int n) {
+        if (n < 1) {
+            return 0;
+        }
+        return n % 10 + digitSum(n / 10);
+    }
+
+    // returning the int value for given base and exp
+    static int power(int base, int exp) {
+        if(base < 0 || exp < 0){
+            return -1;
+        }
+        if(exp == 1){
+            return base;
+        }
+        return base * power(base, exp - 1);
+    }
+
+    // Greatest common Divisor of two number
+    static int gcd(int first, int second){
+        if(first < 0 || second < 0){
+            return -1;
+        }
+        if(second == 0){
+            return first;
+        }
+
+        return gcd(second, first % second);
+    }
+
+    // Decimal to Binary
+    public static int decimalToBinary(int n){
+        if(n == 0){
+            return 0;
+        }
+
+        return n % 2 + 10 * decimalToBinary(n / 2);
+    }
+
+    // return the product of array till a given index N
+    public static int productofArray(int[] A, int N){
+        if (N <= 0)
+            return 1;
+        return (productofArray(A, N - 1) * A[N - 1]);
+    }
+
+    // returns the sum of numbers from 1
+    public static int recursiveRange(int num) {
+        if (num < 2) {
+            return num;
+        }
+        return num + recursiveRange(num - 1);
+    }
+
+
+    static String reverse(String str)
+    {
+        if (str.isEmpty())
+            return str;
+        //Calling Function Recursively
+        return reverse(str.substring(1)) + str.charAt(0);
+    }
+
+
+    static  boolean isPalindrome(String s)
+    {   // if length is 0 or 1 then String is not palindrome
+        if(s.length() == 0 || s.length() == 1)
+            return false;
+        if(s.charAt(0) == s.charAt(s.length()-1))
+            return isPalindrome(s.substring(1, s.length()-1));
+        return false;
+    }
+
+
+    static boolean someRecursive(int[] arr, OddFunction odd) {
+        if (arr.length == 0 ) {
+            return false;
+//        } else if (odd.run(arr[0]) == false) {
+        } else if (!OddFunction.run(arr[0])) {
+            return someRecursive(Arrays.copyOfRange(arr, 1, arr.length), odd);
+        } else {
+            return true;
+        }
+    }
+
+
+    static char first(String str) {
+        if(str.isEmpty()) {
+            return ' ';
+        }
+        if (Character.isUpperCase(str.charAt(0))) {
+            return str.charAt(0);
+        }else {
+            return first(str.substring(1, str.length()));
+        }
+    }
+
+
+    static String capitalizeWord(String str) {
+
+        if(str.isEmpty()) {
+            return str;
+        }
+        char chr = str.charAt(str.length()-1);
+        if(str.length()==1) {
+            return Character.toString(Character.toUpperCase(chr));
+        }
+//        if((str.substring(str.length()-2, str.length()-1).equals(" "))) {
+        if((str.charAt(str.length() - 2) == ' ')) {
+            chr = Character.toUpperCase(chr);
+        }
+        return capitalizeWord(str.substring(0,str.length()-1)) + Character.toString(chr);
+    }
+
+}
+
+class OddFunction {
+    static boolean run(int num) {
+        return num % 2 != 0;
+    }
+}
