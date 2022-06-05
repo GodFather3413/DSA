@@ -1,0 +1,115 @@
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(fact(5));
+        System.out.println(sum(5));
+        System.out.println(digitSum(3413));
+        System.out.println(digitProduct(3413));
+        reverse1(1987);
+        System.out.println(sum);
+        System.out.println(reverse2(1987));
+        System.out.println("Is palindrome : " + palindromeNum(1));
+        System.out.println(countZero(1002033));
+        System.out.println(numberOfSteps(41));
+    }
+
+    // to find the factorial of given number
+    static int fact(int num){
+        if(num < 2){
+            return num;
+        }
+
+        return num * fact(num - 1);
+    }
+
+    // sum from 1 to given number num
+    static int sum(int num){
+        if(num < 2){
+            return num;
+        }
+
+        return num + sum(num - 1);
+    }
+
+    // sum of digits
+    static int digitSum(int num){
+        if(num == 0){
+            return num;
+        }
+        return num % 10 + digitSum(num / 10);
+    }
+
+    // products of digits
+    static int digitProduct(int num){
+        if(num % 10 == num){
+            return num;
+        }
+        return num % 10 * digitProduct(num / 10);
+    }
+
+    // reversing the given number
+    static int sum = 0;
+    static void reverse1(int num){
+        if(num == 0){
+            return;
+        }
+
+        int rem = num % 10;
+        sum = sum * 10 + rem;
+        reverse1(num / 10);
+    }
+
+    // reversing the given number with helper function
+    static int reverse2(int num){
+        int digits = (int)(Math.log10(num)) + 1;
+        return helper(num, digits);
+    }
+
+    private static int helper(int num, int digits){
+        if(num % 10  == num){
+            return num;
+        }
+
+        int rem = num % 10;
+        return rem * (int)(Math.pow(10, digits - 1)) + helper(num / 10, digits - 1);
+    }
+
+    // checking if a given number is a palindrome or not
+    static boolean palindromeNum(int num){
+        return num == reverse2(num);
+    }
+
+    // counting the number of zeros
+    static int countZero(int num){
+        return helper2(num, 0);
+    }
+
+    private static int helper2(int num, int count){
+        if(num == 0){
+            return count;
+        }
+
+        int rem = num % 10;
+        if(rem == 0){
+            return helper2(num / 10, count + 1);
+        }
+        return helper2(num / 10, count);
+    }
+
+    // number of steps required to make a given number 0
+    // if even divide by 2 (num/2) else if odd minus 1 (num-1)
+    public static int numberOfSteps(int num){
+        return helperSteps(num, 0);
+    }
+
+    static int helperSteps(int num, int steps){
+        if(num == 0){
+            return steps;
+        }
+
+        if(num % 2 == 0){
+            return helperSteps(num/2, steps + 1);
+        }
+        return helperSteps(num - 1, steps + 1);
+    }
+
+}
