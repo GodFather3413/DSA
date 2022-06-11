@@ -7,8 +7,26 @@ public class Test{
     public static void main(String[] args) {
 
         String str = "loveleetcode";
+	System.out.println(getFirstUnique(str));
         System.out.println(firstUniqChar(str));
 
+    }
+
+        public static int getFirstUnique(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        // build hash map : character and how often it appears
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        // find the index
+        for (int i = 0; i < s.length(); i++) {
+            if (map.get(s.charAt(i)) == 1)
+                return i;
+        }
+        return -1;
     }
 
     static int firstUniqChar(String str){
