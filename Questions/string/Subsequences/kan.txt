@@ -1,0 +1,71 @@
+import java.util.List;
+import java.util.ArrayList;
+
+public class Kan {
+
+    public static void main(String[] args){
+        int[] arr = {1, 2, 3};
+        System.out.println(subset(arr));
+
+        String str = "abc";
+        System.out.println(subSeq("", str));
+
+        System.out.println(permutationsList("", str));
+
+    }
+
+    static List<List<Integer>> subset(int[] arr){
+        List<List<Integer>> outer = new ArrayList<>();
+
+        outer.add(new ArrayList<>());
+
+        for(int x : arr){
+            int n = outer.size();
+            for(int i = 0; i < n; i++){
+                List<Integer> inner = new ArrayList<>(outer.get(i));
+                inner.add(x);
+                outer.add(inner);
+            }
+
+        }
+        return outer;
+    }
+
+    static List<String> subSeq(String p, String up){
+        if(up.isEmpty()){
+            List<String> list = new ArrayList<>();
+            list.add(p);
+            return list;
+        }
+
+        char c = up.charAt(0);
+
+        List<String> left = subSeq(p + c, up.substring(1));
+        List<String> right = subSeq(p, up.substring(1));
+
+        left.addAll(right);
+
+        return left;
+
+    }
+
+    static ArrayList<String> permutationsList(String p, String up){
+        if(up.isEmpty()){
+            ArrayList<String> list = new ArrayList<>();
+            list.add(p);
+            return list;
+        }
+
+        ArrayList<String> ans = new ArrayList<>();
+
+        char c = up.charAt(0);
+
+        for(int i = 0; i <= p.length(); i++){
+            String f = p.substring(0, i);
+            String s = p.substring(i);
+            ans.addAll(permutationsList(f + c + s, up.substring(1)));
+        }
+        return ans;
+    }
+
+}
