@@ -1,0 +1,57 @@
+public class Main {
+
+    /*
+    Input - a1b2c3
+    Output - abbccc
+    */
+
+    public static void main(String[] args) {
+        String str = "a1b2c3";
+        System.out.println(getSol(str));
+        getStringRepDigit(str);
+    }
+
+    // '0' = 48
+    static void getStringRepDigit(String str){
+        for(int i=0; i<str.length(); i++){
+            char a = str.charAt(i);
+            int b = ((int)str.charAt(++i) - '0');
+
+            if(i+1 >= str.length()){
+                for(int j = 0; j < b; j++)
+                    System.out.print(a);
+                break;
+            }
+
+            if (Character.isDigit(str.charAt(i+1))){
+                b = (b*10) + ((int)str.charAt(++i) - '0');
+            }
+
+            for(int j = 0; j < b; j++)
+                System.out.print(a);
+        }
+    }
+
+    static String getSol(String str){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<str.length(); i++){
+            char a = str.charAt(i);
+            int b = ((int)str.charAt(++i) - '0');
+
+            if(i+1 >= str.length()){
+                for(int j = 0; j < b; j++)
+                    sb.append(a);
+                break;
+            }
+
+            if (Character.isDigit(str.charAt(i+1))){
+                b = (b*10) + ((int)str.charAt(++i) - '0');
+            }
+
+            for(int j = 0; j < b; j++)
+                sb.append(a);
+        }
+        return sb.toString();
+    }
+
+}
