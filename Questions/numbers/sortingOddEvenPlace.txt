@@ -1,0 +1,45 @@
+//      Input:  1,2,3,4,5,6,7,8,9
+//      Output: 9,2,7,4,5,6,3,8,1
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class Main{
+    public static void main(String[] args){
+        int[] arr = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+        System.out.println(Arrays.toString(sortingOddEvenPlace(arr)));
+    }
+
+    static int[] sortingOddEvenPlace(int[] arr){
+        List<Integer> odd = new ArrayList<>();
+        List<Integer> even = new ArrayList<>();
+
+        for(int i = 0; i < arr.length; i++){
+            if(i % 2 == 0){
+                even.add(arr[i]);
+            } else {
+                odd.add(arr[i]);
+            }
+        }
+
+        Collections.sort(odd);
+        Collections.reverse(even);
+
+        int[] sol = new int[arr.length];
+        int m = 0;
+        int n = 0;
+        for(int i = 0; i < sol.length; i++){
+            if(i % 2 == 0){
+                sol[i] = even.get(m);
+                m++;
+            } else {
+                sol[i] = odd.get(n);
+                n++;
+            }
+        }
+        return sol;
+    }
+
+}
