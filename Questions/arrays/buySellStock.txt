@@ -1,0 +1,46 @@
+public class BuySellStock {
+
+//    https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+    public static void main(String[] args){
+        int[] arr = {7, 1, 5, 3, 6, 4};
+//        int[] arr = {7, 6, 4, 3, 1};
+//        System.out.println(bestTime(arr));
+        System.out.println(maxProfit(arr));
+    }
+
+    static int bestTime(int[] arr){
+        int sol = 0;
+        for(int i = 0; i < arr.length; i++){
+            for(int j = i + 1; j < arr.length; j++){
+                int temp = 0;
+                if(arr[i] < arr[j]){
+                    temp = arr[j] - arr[i];
+                }
+                if(sol < temp){
+                    sol = temp;
+                }
+            }
+        }
+        return sol;
+    }
+
+    static public int maxProfit2(int[] arr) {
+        int maxCur = 0, maxSoFar = 0;
+        for(int i = 1; i < arr.length; i++) {
+            maxCur = Math.max(0, maxCur += arr[i] - arr[i-1]);
+            maxSoFar = Math.max(maxCur, maxSoFar);
+        }
+        return maxSoFar;
+    }
+
+    static public int maxProfit(int[] arr) {
+        int buy=Integer.MAX_VALUE,sell=0;
+        for (int x : arr) {
+            buy = Math.min(buy, x);
+            sell = Math.max(sell, x - buy);
+        }
+        return sell;
+    }
+
+}
