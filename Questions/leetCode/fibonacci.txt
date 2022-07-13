@@ -1,0 +1,68 @@
+//  91. Decode Ways
+//  62. Unique Paths
+//  509. Fibonacci Number
+//  70. Climbing Stairs
+
+public class Pain {
+
+    public static void main(String[] args) {
+        int n = 5;
+        System.out.println("Fibonacci num - " + fibonacci(n));
+        System.out.println("Le3tCode fib : " + fib(n));
+        System.out.println("Ways to climb the stairs : " + climbStairs(n));
+    }
+
+//  0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181
+    public static int fibonacci(int n){
+        if(n <= 1) return 0;
+        if(n == 2) return 1;
+        if(n == 3) return 1;
+
+        int a = 0;
+        int b = 1;
+        int c = 1;
+        for(int i = 3; i < n; i++){
+            a = b + c;
+            c = b;
+            b = a;
+        }
+        return a;
+    }
+
+//  0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181
+//    https://leetcode.com/problems/fibonacci-number/
+    public static int fib(int n){
+        if(n <= 0) return 0;
+        if(n == 1) return 1;
+        if(n == 2) return 1;
+
+        int a = 0;
+        int b = 1;
+        int c = 1;
+        for(int i = 2; i < n; i++){
+            a = b + c;
+            b = c;
+            c = a;
+        }
+        return a;
+    }
+
+//    https://leetcode.com/problems/climbing-stairs/
+     static public int climbStairs(int n) {
+        if(n <= 0) return 0;
+        if(n == 1) return 1;
+        if(n == 2) return 2;
+
+        int a = 0;
+        int b = 1;
+        int c = 2;
+
+        for(int i = 2; i < n; i++){
+            a = b + c;
+            b = c;
+            c = a;
+        }
+        return a;
+     }
+
+}
