@@ -1,12 +1,31 @@
-public class BuySellStock {
+public class Main {
 
-//    https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-
-    public static void main(String[] args){
-        int[] arr = {7, 1, 5, 3, 6, 4};
-//        int[] arr = {7, 6, 4, 3, 1};
-//        System.out.println(bestTime(arr));
+    public static void main(String[] args) {
+        int[] arr = new int[]{7, 1, 5, 3, 6, 4};
         System.out.println(maxProfit(arr));
+        System.out.println(bestTime(arr));
+    }
+
+//    https://leetcode.com/problems/best-time-to-buy-and-sell-stock/submissions/
+    static int maxProfit(int[] arr){
+        if(arr.length < 2){
+            return 0;
+        }
+        int maxSum = Integer.MIN_VALUE;
+        int currSum = 0;
+        for(int i = 1; i < arr.length; i++){
+
+            currSum  += arr[i] - arr[i - 1];
+
+            if(currSum < 0){
+                currSum = 0;
+            }
+            if(currSum > maxSum){
+                maxSum = currSum;
+            }
+        }
+
+        return maxSum;
     }
 
     static int bestTime(int[] arr){
@@ -23,24 +42,6 @@ public class BuySellStock {
             }
         }
         return sol;
-    }
-
-    static public int maxProfit2(int[] arr) {
-        int maxCur = 0, maxSoFar = 0;
-        for(int i = 1; i < arr.length; i++) {
-            maxCur = Math.max(0, maxCur += arr[i] - arr[i-1]);
-            maxSoFar = Math.max(maxCur, maxSoFar);
-        }
-        return maxSoFar;
-    }
-
-    static public int maxProfit(int[] arr) {
-        int buy=Integer.MAX_VALUE,sell=0;
-        for (int x : arr) {
-            buy = Math.min(buy, x);
-            sell = Math.max(sell, x - buy);
-        }
-        return sell;
     }
 
 }
