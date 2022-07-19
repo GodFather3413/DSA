@@ -1,0 +1,80 @@
+public class Pain {
+    public static void main(String[] args){
+        String str = "helloworld";
+        System.out.println("Max Occurrence character : " + maxOccurrenceChar(str));
+        System.out.println("Max occurrence character frequency : " + maxOccurrence(str));
+        System.out.println("Min Occurrence character : " + minOccurrenceChar(str));
+        System.out.println("Min occurrence character frequency : " + minOccurrence(str));
+    }
+
+//    max occurring character
+    static char maxOccurrenceChar(String str){
+        int[] arr = new int[26];
+        for(int i = 0; i < str.length(); i++){
+            arr[str.charAt(i) - 'a']++;
+        }
+
+        int max = Integer.MIN_VALUE;
+        int sol = 0;
+        for(int i = 0; i < arr.length; i++){
+            if(max < arr[i]){
+                max = arr[i];
+                sol = i;
+            }
+        }
+
+        return (char)(sol + 'a');
+    }
+
+//    max occurring character Frequency
+    static int maxOccurrence(String str){
+        int[] arr = new int[26];
+        for(int i = 0; i < str.length(); i++){
+            arr[str.charAt(i) - 'a']++;
+        }
+
+        int max = Integer.MIN_VALUE;
+        for (int x : arr) {
+            if (x > max) {
+                max = x;
+            }
+        }
+
+        return max;
+    }
+
+//    min occurring character
+    static char minOccurrenceChar(String str){
+        int[] arr = new int[26];
+        for(int i = 0; i < str.length(); i++){
+            arr[str.charAt(i) - 'a']++;
+        }
+
+        int min = Integer.MAX_VALUE;
+        int sol = 0;
+        for(int i = 0; i < arr.length; i++){
+            if(min > arr[i] && arr[i] > 0){
+                min = arr[i];
+                sol = i;
+            }
+        }
+        return (char)(sol + 'a');
+    }
+
+//    min occurring character Frequency
+    static int minOccurrence(String str){
+        int[] arr = new int[26];
+        for(int i = 0; i < str.length(); i++){
+            arr[str.charAt(i) - 'a']++;
+        }
+
+        int min = Integer.MAX_VALUE;
+        for (int x : arr) {
+            if (x < min && x > 0) {
+                min = x;
+            }
+        }
+        return min;
+    }
+
+}
