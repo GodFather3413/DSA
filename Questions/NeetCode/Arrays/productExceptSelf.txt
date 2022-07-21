@@ -1,0 +1,73 @@
+import java.util.*;
+
+public class Pain {
+    public static void main(String[] args) {
+//        int[] arr = new int[] {1, 1, 1, 2, 2, 3};
+//        int[] arr = new int[] {2, 3, 4, 5};
+//        int[] arr = new int[] {-1, 1, 0, -3, 3};
+//        int[] arr = new int[] {0, 0};
+//        int[] arr = new int[] {0, 0, 0};
+//        int[] arr = new int[] {0, 4, 0};
+        int[] arr = new int[]{-1, 1, 0, -3, 3};
+        System.out.println(Arrays.toString(productExceptSelf(arr)));
+        System.out.println(Arrays.toString(productExceptSelfT(arr)));
+    }
+
+//    https://leetcode.com/problems/product-of-array-except-self/submissions/
+    public static int[] productExceptSelf(int[] arr) {
+        int n = arr.length;
+        int[] res = new int[n];
+        res[0] = 1;
+
+        // Calculate lefts and store in res.
+        for (int i = 1; i < n; i++) {
+            res[i] = res[i - 1] * arr[i - 1];
+        }
+
+        // Calculate rights and the product from the end of the array.
+        int right = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            res[i] *= right;
+            right *= arr[i];
+        }
+        return res;
+    }
+
+    public static int[] productExceptSelfT(int[] arr) {
+//        Get the total product and divide the number on that index
+        int total = 1;
+        int ex = 1;     //  ex will hold the product of non-zero digits
+        boolean allZero = true;     //  to check if all element of array is zero(0)
+        int count = 0;  //  count variable for checking if number of zero(0) > 1 ?
+        for (int x : arr) {
+            if (x == 0) {
+                count++;
+            }
+            if (count > 1) {
+                allZero = true;
+                break;
+            }
+            total *= x;
+            if (x != 0) {
+                ex *= x;
+                allZero = false;
+            }
+        }
+
+        int[] sol = new int[arr.length];
+        if (allZero) {
+            return sol;
+        }
+
+        for (int i = 0; i < sol.length; i++) {
+            if (arr[i] != 0) {
+                sol[i] = total / arr[i];
+            } else {
+                sol[i] = ex;
+            }
+        }
+
+        return sol;
+    }
+
+}
