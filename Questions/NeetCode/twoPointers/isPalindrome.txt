@@ -2,13 +2,13 @@ public class Pain {
     public static void main(String[] args) {
 //        String str = "A man, a plan, a canal: Panama";
         String str = "0P";
-        System.out.println(isPalindrome(str));
+        System.out.println(isPalindrome1(str));
         System.out.println(isPalindrome2(str));
+        System.out.println(isPalindrome3(str));
     }
 
-
-//    https://leetcode.com/problems/valid-palindrome/
-    static boolean isPalindrome(String str){
+    //    https://leetcode.com/problems/valid-palindrome/
+    static boolean isPalindrome1(String str){
         int start = 0;
         int end = str.length()-1;
 
@@ -31,6 +31,30 @@ public class Pain {
     }
 
     public static boolean isPalindrome2(String str) {
+        int i = 0;
+        int j = str.length() - 1;
+        while (i < j) {
+
+            char start = str.charAt(i);
+            char end = str.charAt(j);
+            if (!Character.isLetterOrDigit(start)) {
+                i++;
+                continue;
+            }
+            if (!Character.isLetterOrDigit(end)) {
+                j--;
+                continue;
+            }
+            if (Character.toLowerCase(start) != Character.toLowerCase(end)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    public static boolean isPalindrome3(String str) {
         char[] c = str.toCharArray();
         for (int i = 0, j = c.length - 1; i < j; ) {
             if (!Character.isLetterOrDigit(c[i])) i++;
