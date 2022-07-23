@@ -1,0 +1,47 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Pain {
+    public static void main(String[] args) {
+        int[] arr = new int[]{2, 7, 11, 15};
+        int target = 9;
+        System.out.println(Arrays.toString(twoSum(arr, target)));
+        System.out.println(Arrays.toString(twoSum2(arr, target)));
+    }
+
+//    https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+//    Two Sum II
+    static int[] twoSum(int[] arr, int target){
+        int[] sol = new int[2];
+        if(arr.length < 2) return sol;
+
+        int start = 0;
+        int end = arr.length - 1;
+        while(start < end){
+            int k = arr[start] + arr[end];
+            if(k == target){
+                sol[0] = start + 1;
+                sol[1] = end + 1;
+                break;
+            } else if (k > target){
+                end--;
+            } else {
+                start++;
+            }
+        }
+        return sol;
+    }
+
+    public static int[] twoSum2(int[] arr, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i = 0; i < arr.length; i++){
+            if(map.containsKey(target - arr[i])){
+                return new int[]{map.get(target - arr[i]) + 1, i + 1};
+            }
+            map.put(arr[i], i);
+        }
+        return new int[]{};
+    }
+
+}
