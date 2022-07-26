@@ -1,0 +1,41 @@
+public class Pain {
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{7, 1, 5, 3, 6, 4};
+        System.out.println(maxProfit(arr));
+        System.out.println(maxProfit2(arr));
+    }
+
+//    https://leetcode.com/problems/best-time-to-buy-and-sell-stock/submissions/
+    static int maxProfit(int[] arr){
+        if(arr.length < 2){
+            return 0;
+        }
+        int maxSum = Integer.MIN_VALUE;
+        int currSum = 0;
+        for(int i = 1; i < arr.length; i++){
+
+            currSum  += arr[i] - arr[i - 1];
+
+            if(currSum < 0){
+                currSum = 0;
+            }
+            if(currSum > maxSum){
+                maxSum = currSum;
+            }
+        }
+
+        return maxSum;
+    }
+
+    public static int maxProfit2(int[] prices) {
+        int min = Integer.MAX_VALUE;
+        int ans = Integer.MIN_VALUE;
+        for (int val : prices) {
+            min = Math.min(min, val);
+            ans = Math.max(ans, val - min);
+        }
+        return ans;
+    }
+
+}
