@@ -1,0 +1,44 @@
+public class Pain {
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{6, 5, 4, 3, 7, 1, 0};
+        int target = 3;
+        System.out.println("Max : " + getMaxSubArray(arr, target));
+        System.out.println("Min : " + getMinSubArray(arr, target));
+    }
+
+    public static int getMaxSubArray(int[] arr, int target){
+        int start = 0;
+        int end = 0;
+        int sum = 0;
+        int max = Integer.MIN_VALUE;
+        while(end < arr.length){
+            sum += arr[end];
+            if(end - start + 1 == target){
+                max = Math.max(max, sum);
+                sum -= arr[start];
+                start++;
+            }
+            end++;
+        }
+        return max;
+    }
+
+    public static int getMinSubArray(int[] arr, int target){
+        int start = 0;
+        int end = 0;
+        int sum = 0;
+        int min = Integer.MAX_VALUE;
+        while(end < arr.length){
+            sum += arr[end];
+            if(end - start + 1 == target){
+                min = Math.min(min, sum);
+                sum -= arr[start];
+                start++;
+            }
+            end++;
+        }
+        return min;
+    }
+    
+}
