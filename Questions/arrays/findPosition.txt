@@ -1,0 +1,47 @@
+import java.util.Arrays;
+
+public class Pain {
+    public static void main(String[] args) {
+//        int N = 2;
+//        long X = 2;
+//        int[] arr = {1, 2};
+//        int Q = 3;
+//        long[] pos = {1, 4, 3};
+        int N = 1;
+        long X = 1;
+        int[] arr = {100000000};
+        int Q = 1;
+        long[] pos = {1};
+        System.out.println(Arrays.toString(findPosition(N, X, arr, Q, pos)));
+    }
+
+    static int[] findPosition(int N, long X, int[] arr, int Q, long[] pos){
+        if(N < 2 && X < 2){
+            return arr;
+        }
+
+        for(long x : pos){
+            if(x < arr.length){
+                return null;
+            }
+        }
+
+        int[] arrNew = new int[(int)(N * X)];
+        System.arraycopy(arr, 0, arrNew, 0, arr.length);
+
+        System.arraycopy(arr, 0, arrNew, arr.length, arr.length);
+
+        Arrays.sort(arrNew);
+
+        int[] sol = new int[Q];
+
+        int count=0;
+
+        for(int i = 0; count < Q; i++, count++){
+            sol[count] = arrNew[(int)pos[i] - 1];
+        }
+
+        return sol;
+    }
+
+}
