@@ -1,0 +1,48 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Demo {
+
+    public static void main(String[] args) {
+//        int num = 56;
+//        int num = 10;
+//        int num = 16 ;
+        int num = 429 ;
+        System.out.println(minDays(num));
+        System.out.println(min(num));
+    }
+
+//    https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/
+//    3 Operations :
+//        i)  minus 1
+//        ii)  if num % 2 == 0      ->      num/2
+//        iii) if num % 3 == 0      ->      num/3
+    static Map<Integer, Integer> dp = new HashMap<>();
+    static public int minDays(int n) {
+        if (n <= 1)
+            return n;
+        if (!dp.containsKey(n))
+            dp.put(n, 1 + Math.min(n % 2 + minDays(n / 2), n % 3 + minDays(n / 3)));
+        return dp.get(n);
+    }
+
+//    This does not pass every test cases
+    static int min(int num){
+        int count = 1;
+        while(num != 1){
+            if(num % 3 == 0){
+                num /= 3;
+//            } else if(num % 3 == 1 & (num - 1) % 9 == 0){
+            } else if(num % 3 == 1){
+                num--;
+            } else if(num % 2 == 0){
+                num /= 2;
+            } else {
+                num--;
+            }
+            count++;
+        }
+        return count;
+    }
+
+}
