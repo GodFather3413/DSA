@@ -1,0 +1,72 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Pain {
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{1, 2, 9, 3, 8, 2, 5, 2, 1};
+        int target = 1;
+        System.out.println("Frequency of " + target + " is : " + getSol(arr, target));
+        System.out.println("\nFrequency Map : " + getSol2(arr));
+        getFreq(arr);
+        System.out.println("\nElements which having frequency " + target + " are : " + getElem(arr, target));
+    }
+
+//    Print the frequency of the element
+    public static int getSol(int[] arr, int target){
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int x : arr){
+            map.put(x, map.getOrDefault(x , 0) + 1);
+        }
+
+        int freq = 0;
+        if(map.containsKey(target)){
+            freq = map.get(target);
+        }
+        return freq;
+    }
+
+//  For the Frequency Map
+    public static Map<Integer, Integer> getSol2(int[] arr){
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int x : arr){
+            map.put(x, map.getOrDefault(x , 0) + 1);
+        }
+        return map;
+    }
+
+//  Print the Frequency Map
+    public static void getFreq(int[] arr){
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int x : arr){
+            map.put(x, map.getOrDefault(x , 0) + 1);
+        }
+
+        for(int x : map.keySet()){
+            System.out.println(x  + " | " + map.get(x));
+        }
+    }
+
+//    To get element's which have certain frequency
+    public static List<Integer> getElem(int[] arr, int target){
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> list = new ArrayList<>();
+        for(int x : arr){
+            map.put(x, map.getOrDefault(x , 0) + 1);
+        }
+
+        for(int x : map.keySet()){
+            if(map.get(x) == target){
+                list.add(x);
+            }
+        }
+
+        return list;
+    }
+
+}
