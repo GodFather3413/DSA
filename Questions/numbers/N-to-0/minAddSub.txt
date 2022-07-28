@@ -1,0 +1,44 @@
+public class Gain {
+    public static void main(String[] args) {
+        int num = 1767;
+        System.out.println(min(num));
+        System.out.println(min2(num));
+    }
+
+    static int min(int num){
+        int count = 0;
+
+//    2 Operations :
+//        i)  if num % 2 == 0      ->      num/2
+//        ii)  num - 1 or num + 1
+        while(num != 1){
+            if(num % 2 == 0){
+                num /= 2;
+            } else if((num & 3) == 1){
+                num -= 1;
+            } else if((num & 3) == 3){
+                num += 1;
+            }
+            count++;
+        }
+        return count;
+
+    }
+
+    static int min2(int num){
+        int count = 0;
+
+        while(num != 1){
+            if(num % 2 == 0){
+                num /= 2;
+            } else if(num % 4 == 1){
+                num -= 1;
+            } else if(num % 4 == 3){
+                num += 1;
+            }
+            count++;
+        }
+        return count;
+    }
+
+}
