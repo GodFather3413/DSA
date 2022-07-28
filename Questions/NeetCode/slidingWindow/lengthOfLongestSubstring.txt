@@ -1,0 +1,27 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Pain{
+    public static void main(String[] args) {
+        String str = "abcabcbb";
+        System.out.println(lengthOfLongestSubstring(str));
+    }
+
+//    https://leetcode.com/problems/longest-substring-without-repeating-characters/
+    static int lengthOfLongestSubstring(String str){
+        if(str.length() < 2) return str.length();
+        Map<Character, Integer> map = new HashMap<>();
+        int max = 0;
+        int j = 0;
+        for(int i = 0; i < str.length(); i++){
+            if(map.containsKey(str.charAt(i))){
+                j = Math.max(j, map.get(str.charAt(i)) + 1);
+            }
+            map.put(str.charAt(i), i);
+            max = Math.max(max, i - j + 1);
+        }
+
+        return max;
+    }
+
+}
