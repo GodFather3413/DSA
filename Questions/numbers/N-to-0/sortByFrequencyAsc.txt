@@ -1,0 +1,48 @@
+import java.util.*;
+
+//  https://leetcode.com/problems/sort-array-by-increasing-frequency/
+public class Pain{
+    public static void main(String[] args) {
+        int[] arr = new int[]{2, 3, 5, 3, 7, 9, 5, 3, 7};
+        System.out.println("Ascending" + Arrays.toString(sortByFrequencyAsc(arr)));
+        System.out.println("Descending" + Arrays.toString(sortByFrequencyDec(arr)));
+    }
+
+//   .stream(arr)
+//  iterates through the arr array
+
+//  .boxed()
+//  converts each int to Integer object, this is because .sorted() can only operate on objects
+
+//  .sorted((a,b) -> map.get(a) != map.get(b) ? map.get(a) - map.get(b) : b - a)
+//  if frequency of two numbers are not the same, sort by ascending frequency. If frequencies are the same,
+//  sort by descending numeric value
+
+//  .mapToInt(n -> n)
+//  converts Integer to int
+
+//  .toArray()
+//  returns array
+    public static int[] sortByFrequencyAsc(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+        // count frequency of each number
+        Arrays.stream(arr).forEach(n -> map.put(n, map.getOrDefault(n, 0) + 1));
+        // custom sort
+        return Arrays.stream(arr).boxed()
+                .sorted((a,b) -> map.get(a) != map.get(b) ? map.get(b) - map.get(a) :a - b)
+                .mapToInt(n -> n)
+                .toArray();
+    }
+
+    public static int[] sortByFrequencyDec(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+        // count frequency of each number
+        Arrays.stream(arr).forEach(n -> map.put(n, map.getOrDefault(n, 0) + 1));
+        // custom sort
+        return Arrays.stream(arr).boxed()
+                .sorted((a,b) -> map.get(a) != map.get(b) ? map.get(a) - map.get(b) : b - a)
+                .mapToInt(n -> n)
+                .toArray();
+    }
+
+}
