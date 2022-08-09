@@ -1,0 +1,30 @@
+//0 1 2 3 5 8 13 21
+public class Pain{
+    public static void main(String[] args){
+        int num = 8;
+        System.out.println(fibonacci(num));
+        System.out.println(fibonacciRec(num));
+    }
+
+    static int fibonacci(int target){
+        if(target == 0) return 0;
+        if(target == 1) return 1;
+
+        int a = 0, b = 1, c = 1;
+
+        for(int i = 2; i < target; i++){
+            a = b + c;
+            b = c;
+            c = a;
+        }
+        return a;
+    }
+
+    static int fibonacciRec(int num){
+        if(num < 2){
+            return num;
+        }
+        return fibonacciRec(num - 2) + fibonacciRec(num - 1);
+    }
+
+}
