@@ -1,16 +1,29 @@
-package com.kanchanJS;
+import java.util.Arrays;
 
-public class Test{
+public class Main{
     public static void main(String[] args){
         int[] arr = new int[] {1, 2, 4, 5, 0};
         int[] arr2 = new int[] {1, 2, 4, 5};
         int[] arr3 = new int[] {75, 71, 74, 72};
-        System.out.println("Missing number is [0, n]: " + missingNumber(arr));
+        System.out.println("Missing number is [71, n]: " + missingNumber(arr3));
+        System.out.println("Missing number is [0, n]: " + missingNumber1(arr));
         System.out.println("Missing number is [1, n]: " + missingNumber2(arr2));
         System.out.print("Missing number is [71, n]: " + missingNumber3(arr3));
     }
 
     static int missingNumber(int[] arr){
+        Arrays.sort(arr);
+
+        int start = arr[0];
+        for(int i = 0; i < arr.length; i++){
+            if(start + i != arr[i]){
+                return start + i;
+            }
+        }
+        return -1;
+    }
+
+    static int missingNumber1(int[] arr){
         int n = arr.length;
         int sum = 0;
         int temp = (n * (n + 1))/2;
