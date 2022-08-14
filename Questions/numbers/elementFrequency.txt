@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+// [2 ,2 ,2 ,3 ,8 ,8 ,5 ,5 ,9, 9, 9, 9, 9]
+// N - frequency, M - value
+//  Num ->  Freq
+//  2   ->  3
+//  3   ->  1
+//  8   ->  2
+//  5   ->  2
+//  9   ->  5
+
+// we have to find freq <= M
+// So we will ignore 9 (4 < 5)
+//  sol = 4 - freq(x)
+//  sol = (4 - 3) + (4 - 1) + (4 - 2) + (4 - 2)
+//  1 + 3 + 2 + 2 = 8
+
+public class Main{
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{2 ,2 ,2 ,3 ,8 ,8 ,5 ,5 ,9, 9, 9, 9, 9};
+        System.out.println(elementFrequency(13, 4, arr));
+    }
+
+    public static int elementFrequency(int N, int M, int[] A) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int x : A){
+            map.put(x, map.getOrDefault(x, 0) + 1);
+        }
+
+        List<Integer> list = new ArrayList<>();
+        for(int x : map.keySet()){
+            if(map.get(x) < M){
+                list.add(map.get(x));
+            }
+        }
+
+        int sol = 0;
+        for(int x : list){
+            sol += M - x;
+        }
+        return sol;
+    }
+}
